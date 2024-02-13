@@ -1,25 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { AppDispatch, RootState } from "../state/store";
+import { useSelector, useDispatch } from "react-redux";
+import { AppState, AppDispatch } from "../state/store";
 
 import {
-  decrement,
   increment,
-  incrementByAmount,
+  decrement,
+  incrementWithPayload,
   incrementAsync,
-} from "../state/counter/counterSlice";
+} from "../state/slices/counterSlice";
 
 const Counter = () => {
-  const count = useSelector((state: RootState) => state.counter.value);
+  const count = useSelector((state: AppState) => state.counter.counterValue);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div>
+      <button onClick={() => dispatch(incrementWithPayload(10))}>
+        Increment by 10
+      </button>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(incrementAsync(2))}>
+        Increment Async by 2
+      </button>
       <h2>{count}</h2>
-      <div>
-        <button onClick={() => dispatch(incrementAsync(10))}>Increment</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
-      </div>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
     </div>
   );
 };

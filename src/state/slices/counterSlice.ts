@@ -4,7 +4,7 @@ interface CounterState {
   counterValue: number;
 }
 
-const initialState = {
+const initialState: CounterState = {
   counterValue: 0,
 };
 
@@ -37,7 +37,7 @@ const counterSlice = createSlice({
           state.counterValue += action.payload;
         }
       )
-      .addCase(incrementAsync.rejected, (state) => {
+      .addCase(incrementAsync.rejected, () => {
         // Add error state
         console.log("incrementAsync.rejected");
       });
@@ -47,7 +47,16 @@ const counterSlice = createSlice({
 const incrementAsync = createAsyncThunk(
   "counter/incrementAsync",
   async (amount: number) => {
-    await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+    await new Promise((resolve, reject) =>
+      setTimeout(() => {
+        try {
+          // throw new Error();
+          resolve(amount);
+        } catch (error) {
+          reject();
+        }
+      }, 1000)
+    );
     return amount;
   }
 );

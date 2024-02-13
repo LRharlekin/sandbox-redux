@@ -18,7 +18,7 @@ const Counter = () => {
         Increment by 10
       </button>
       <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(incrementAsync(2))}>
+      <button onClick={() => dispatch(incrementAsync(7))}>
         Increment Async by 2
       </button>
       <h2>{count}</h2>

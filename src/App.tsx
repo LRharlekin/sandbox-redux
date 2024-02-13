@@ -1,13 +1,15 @@
 import "./App.css";
 
-import Counter from "./components/Counter";
+// import Counter from "./components/Counter";
+import UserView from "./components/UserView";
 
 const App = () => {
   return (
     <>
       <h1>Redux Sandbox</h1>
       <div className="card">
-        <Counter />
+        <UserView />
+        {/* <Counter /> */}
       </div>
     </>
   );
